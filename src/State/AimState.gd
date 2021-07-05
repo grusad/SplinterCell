@@ -1,5 +1,9 @@
 extends State
 
+signal fire
+
+onready var hit_particles = preload("res://src/Entity/HitParticles.tscn")
+
 var weapon_texture : PlayerWeaponTexture = null
 var timer = null
 var can_fire = false
@@ -40,6 +44,23 @@ func fire():
 	weapon_texture.rect_rotation = 2
 	can_fire = false
 	timer.start()
+	
+	var aim = parent.get_aim()
+	
+	if aim.target:
+		spawn_hit_particles(parent.get_aim().target)
+		
+func spawn_hit_particles(hit_data):
+	var instance = hit_particles.instance()
+	var root = get_tree().root
+	root.add_child(instance)
+	
+	
+	instance.start(hit_data)
+	
+	
+	
+	
 	
 func on_timer_timeout():
 	can_fire = true

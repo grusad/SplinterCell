@@ -58,7 +58,11 @@ func play_animation(animation):
 	if animation != "aim_animation" and has_state("AimState"):
 		return
 	
-	animation_player.play(animation)	
+	animation_player.play(animation)
+	
+func get_aim():
+	return get_node("UpperCollider/Camera/Aim")
+	
 	
 
 

@@ -5,6 +5,9 @@ onready var player = get_tree().root.get_node("/root/Test/Player")
 onready var navigation = get_tree().root.get_node("root/Test/Navigation")
 	
 
+func _ready():
+	add_to_group("Enemy")
+
 func _physics_process(delta):
 	._physics_process(delta)
 	process_modulate()
