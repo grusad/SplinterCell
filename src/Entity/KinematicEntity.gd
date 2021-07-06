@@ -42,7 +42,6 @@ func apply_movement(movement_direction, acceleration, max_speed, delta):
 	var dir = Vector3()
 	dir += direction * movement_direction.z
 	dir += strafe * movement_direction.x
-	
 	velocity = lerp(velocity, dir * max_speed, acceleration * delta)
 	
 func apply_force(direction, force):

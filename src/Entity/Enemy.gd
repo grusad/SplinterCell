@@ -2,11 +2,14 @@ extends KinematicEntity
 
 onready var sprite = $Sprite3D
 onready var player = get_tree().root.get_node("/root/Test/Player")
-onready var navigation = get_tree().root.get_node("root/Test/Navigation")
 	
 
 func _ready():
 	add_to_group("Enemy")
+	
+	var initial_state = get_state("MoveState")
+	push_state(initial_state, null, {"object": player, "update_path_time": 2})
+	
 
 func _physics_process(delta):
 	._physics_process(delta)
