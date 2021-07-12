@@ -4,8 +4,8 @@ class_name KinematicEntity
 
 
 var velocity = Vector3()
-var acceleration = 10.0
-var max_speed = 3.0
+export (int) var acceleration = 10.0
+export (int) var max_speed = 3.0
 var friction = 10.0
 var states = []
 var direction = Vector3()
@@ -38,11 +38,7 @@ func get_state(state_name):
 
 
 func apply_movement(movement_direction, acceleration, max_speed, delta):
-	
-	var dir = Vector3()
-	dir += direction * movement_direction.z
-	dir += strafe * movement_direction.x
-	velocity = lerp(velocity, dir * max_speed, acceleration * delta)
+	velocity = lerp(velocity, movement_direction * max_speed, acceleration * delta)
 	
 func apply_force(direction, force):
 	velocity = direction * force

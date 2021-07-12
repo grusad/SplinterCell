@@ -5,9 +5,11 @@ onready var upper_collider = $UpperCollider
 onready var camera = $UpperCollider/Camera
 
 var MOUSE_SENSITIVITY = 0.2
+var camera_transform : Transform = Transform()
+
 
 func _ready():
-	
+	add_to_group("Player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)	
 	var initial_state = get_state("IdleState")
 	initial_state.enter_state(self, null)
@@ -41,10 +43,8 @@ func _unhandled_input(event):
 		upper_collider.rotation_degrees = camera_rot
 		
 		var cam_xform = camera.get_global_transform()
+		self.camera_transform = cam_xform
 		
-		direction = cam_xform.basis.z
-		strafe = cam_xform.basis.x
-		direction = direction.normalized()
 		
 func get_weapon_texture():
 	return get_node("PlayerWeaponTexture")

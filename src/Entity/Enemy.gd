@@ -1,26 +1,56 @@
 extends KinematicEntity
 
+
 onready var sprite = $Sprite3D
-onready var player = get_tree().root.get_node("/root/Test/Player")
-	
+onready var vision = $Vision
+
 
 func _ready():
 	add_to_group("Enemy")
-	
-	var initial_state = get_state("MoveState")
-	push_state(initial_state, null, {"object": player, "update_path_time": 2})
-	
+	var initial_state = get_state("IdleState")
+	push_state(initial_state, null)
+	max_speed = 1
 
 func _physics_process(delta):
 	._physics_process(delta)
-	process_modulate()
 	
-	
-func process_modulate():
-	var a = self.global_transform.basis.z
-	var b = (player.global_transform.origin - self.global_transform.origin).normalized()
-	
-	if acos(a.dot(b)) <= deg2rad(90):
+	if vision.player_in_front:
 		sprite.modulate = Color.white
 	else:
 		sprite.modulate = Color.black
+	
+func get_vision():
+	return vision
+
+func play_animation(animation):
+	var animation_player = get_node("AnimationPlayer")
+	
+	if animation_player.current_animation == animation:
+		return
+		
+	if animation != "aim_animation" and has_state("AimState"):
+		return
+	
+	animation_player.play(animation)
+
+func rotate_towards(target):
+	look_at(target, Vector3.UP)
+	rotation_degrees.y += 180
+	rotation_degrees.x = 0
+	rotation_degrees.z = 0
+	
+func move(path, look_at, delta):
+	if not path.empty():
+		if global_transform.origin.distance_to(path[0]) < 0.5:
+			path.remove(0)
+	
+	if not path.empty():
+		rotate_towards(look_at)
+
+		var direction = (path[0] - global_transform.origin).normalized()
+
+		apply_movement(direction, acceleration, max_speed, delta)
+	else:
+		apply_friction(5, delta)
+	
+	return path

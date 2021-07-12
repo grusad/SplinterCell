@@ -4,7 +4,7 @@ extends State
 
 func enter_state(parent, previous_state = null, parameters = {}):
 	.enter_state(parent, previous_state, parameters)
-	#parent.play_animation("move_animation")
+	
 	
 func exit_state():
 	pass
@@ -22,6 +22,14 @@ func physics_process(delta):
 		
 	if Input.is_action_just_pressed("aim"):
 		parent.push_state(parent.get_state("AimState"))
-		
-	parent.apply_movement(movement_direction, parent.acceleration, parent.max_speed, delta)
+	
+	var camera_transform = parent.camera_transform
+	var camera_rotation = camera_transform.basis.z
+	var strafe = camera_transform.basis.x
+	
+	var dir = Vector3()
+	dir += camera_rotation * movement_direction.z
+	dir += strafe * movement_direction.x
+	
+	parent.apply_movement(dir, parent.acceleration, parent.max_speed, delta)
 	
