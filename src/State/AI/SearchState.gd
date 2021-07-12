@@ -2,8 +2,12 @@ extends State
 
 onready var navigation = get_tree().root.get_node("Test/Navigation")
 
+const MAX_ATTEMPS = 5
+
 var path = []
 var timer = null
+var attemps = 0
+
 
 func _ready():
 	randomize()
@@ -24,6 +28,8 @@ func enter_state(parent, previous_state, parameters = {}):
 func exit_state():
 	parent.get_vision().disconnect("player_alert", self, "on_player_alert")
 	timer.stop()
+	attemps = 0
+	path = []
 
 func physics_process(delta):
 	if not path.empty():
@@ -42,10 +48,15 @@ func find_random_target():
 	path = navigation.get_simple_path(parent.global_transform.origin, target, true)
 
 func on_player_alert(player):
-	#transition_to(parent.get_state("CombatState"), {"target": player, "update_path_time": 1})
-	pass
+	transition_to(parent.get_state("CombatState"), {"target": player, "update_path_time": 1})
+	
 
 func on_timer_timeout():
-	timer.stop()
-	timer.wait_time = rand_range(2, 8)
-	find_random_target()
+	if attemps > MAX_ATTEMPS:
+		transition_to(parent.get_state("IdleState"))
+	else:
+		timer.stop()
+		timer.wait_time = rand_range(2, 8)
+		find_random_target()
+		attemps += 1
+	
