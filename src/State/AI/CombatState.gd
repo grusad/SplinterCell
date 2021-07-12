@@ -39,7 +39,7 @@ func physics_process(delta):
 		parent.apply_friction(5, delta)
 		parent.rotate_towards(target_last_seen)
 	else:
-		path = parent.move(path, target_last_seen, delta)
+		path = parent.move(path, delta, target_last_seen)
 		parent.play_animation("aim_walk_animation")
 	
 	if path.empty() and not vision.see_player():

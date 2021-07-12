@@ -1,6 +1,7 @@
 extends KinematicEntity
 
-export (Curve3D) var patrol_path = null
+
+export (String, "IdleState", "PatrolState") var initial_state = "IdleState"
 
 onready var sprite = $Sprite3D
 onready var vision = $Vision
@@ -8,8 +9,7 @@ onready var vision = $Vision
 
 func _ready():
 	add_to_group("Enemy")
-	var initial_state = get_state("IdleState")
-	push_state(initial_state, null)
+	push_state(get_state(initial_state), null)
 	max_speed = 1
 
 func _physics_process(delta):
@@ -40,16 +40,20 @@ func rotate_towards(target):
 	rotation_degrees.x = 0
 	rotation_degrees.z = 0
 	
-func move(path, look_at, delta):
+func move(path, delta, look_at = null, break_move = false):
 	if not path.empty():
 		if global_transform.origin.distance_to(path[0]) < 0.5:
 			path.remove(0)
+			if break_move:
+				return path
 	
 	if not path.empty():
+		if not look_at:
+			look_at = path[0]
 		rotate_towards(look_at)
 
 		var direction = (path[0] - global_transform.origin).normalized()
-
+		
 		apply_movement(direction, acceleration, max_speed, delta)
 	else:
 		apply_friction(5, delta)

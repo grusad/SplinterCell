@@ -33,7 +33,7 @@ func exit_state():
 
 func physics_process(delta):
 	if not path.empty():
-		path = parent.move(path, path[0], delta)
+		path = parent.move(path, delta, path[0])
 		parent.play_animation("aim_walk_animation")
 	else:
 		parent.play_animation("aim_animation")

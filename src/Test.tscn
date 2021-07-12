@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/gridtiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://src/Entity/Player.tscn" type="PackedScene" id=2]
@@ -11,11 +11,17 @@ cell/size = 0.1
 agent/height = 1.0
 agent/radius = 0.2
 
-[sub_resource type="ProceduralSky" id=2]
+[sub_resource type="Curve3D" id=2]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -9.35013, -0.1, -11.6504, 0, 0, 0, 0, 0, 0, -9.35013, -0.1, -5.65043, 0, 0, 0, 0, 0, 0, -4.35013, -0.1, -5.65043, 0, 0, 0, 0, 0, 0, -0.35013, -0.1, -10.6504, 0, 0, 0, 0, 0, 0, -9.35013, -0.1, -11.6504 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="ProceduralSky" id=3]
+
+[sub_resource type="Environment" id=4]
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 3 )
 
 [node name="Test" type="Spatial"]
 
@@ -61,6 +67,13 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.35013, 0.1, -1.34957 )
 acceleration = 10
 max_speed = 3
+initial_state = "PatrolState"
+
+[node name="Path" type="Path" parent="Navigation/DummyEnemy"]
+curve = SubResource( 2 )
+
+[node name="DummyEnemy2" parent="Navigation" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 3 )
+environment = SubResource( 4 )
