@@ -36,10 +36,6 @@ config/name="Splinter Cell"
 run/main_scene="res://src/Test.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Globals="*res://src/Resource/Globals.gd"
-
 [display]
 
 window/stretch/mode="viewport"
@@ -123,5 +119,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
 quality/filters/use_fxaa=true
+environment/default_environment="res://default_env.tres"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/gridtiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://src/Entity/Player.tscn" type="PackedScene" id=2]
@@ -16,12 +16,6 @@ agent/radius = 0.2
 [sub_resource type="Environment" id=3]
 background_mode = 2
 background_sky = SubResource( 2 )
-
-[sub_resource type="Curve3D" id=4]
-_data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 5, 1, -4, 0, 0, 0, 0, 0, 0, 2, 1, -2, 0, 0, 0, 0, 0, 0, 1, 1, -3 ),
-"tilts": PoolRealArray( 0, 0, 0 )
-}
 
 [node name="Test" type="Spatial"]
 
@@ -70,6 +64,3 @@ max_speed = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
-
-[node name="Path" type="Path" parent="."]
-curve = SubResource( 4 )

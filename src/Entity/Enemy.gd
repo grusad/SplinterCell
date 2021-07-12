@@ -1,5 +1,6 @@
 extends KinematicEntity
 
+export (Curve3D) var patrol_path = null
 
 onready var sprite = $Sprite3D
 onready var vision = $Vision

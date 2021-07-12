@@ -34,6 +34,7 @@ func get_input_direction():
 		).normalized()
 
 func _unhandled_input(event):
+	
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		upper_collider.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))

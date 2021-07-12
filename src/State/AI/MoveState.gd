@@ -59,9 +59,6 @@ func physics_process(delta):
 
 func find_path():
 	path = navigation.get_simple_path(parent.global_transform.origin, position, true)
-	
-	if Globals.DEBUG_MODE:
-		generate_debug()
 
 
 func on_timer_timeout():
