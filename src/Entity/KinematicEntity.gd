@@ -18,7 +18,7 @@ func _physics_process(delta):
 	
 	if not is_on_floor():
 		velocity.y -= 0.5
-	velocity = move_and_slide(velocity, Vector3.UP)
+	velocity = move_and_slide(velocity, Vector3.UP, false, 4, deg2rad(70))
 
 func push_state(state, old_state = null, parameters = {}):
 	if has_state(state):

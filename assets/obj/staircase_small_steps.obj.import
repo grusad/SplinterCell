@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/staircase_small_steps.obj-501f770e8f3a728380d5a171b26edbb8.mesh"
+
+[deps]
+
+files=[ "res://.import/staircase_small_steps.obj-501f770e8f3a728380d5a171b26edbb8.mesh" ]
+
+source_file="res://assets/obj/staircase_small_steps.obj"
+dest_files=[ "res://.import/staircase_small_steps.obj-501f770e8f3a728380d5a171b26edbb8.mesh", "res://.import/staircase_small_steps.obj-501f770e8f3a728380d5a171b26edbb8.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
