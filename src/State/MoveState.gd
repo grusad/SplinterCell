@@ -28,7 +28,8 @@ func physics_process(delta):
 	var strafe = camera_transform.basis.x
 	
 	var dir = Vector3()
-	dir += camera_rotation * movement_direction.z
+	var cam_rot = camera_rotation
+	dir += cam_rot * movement_direction.z
 	dir += strafe * movement_direction.x
 	
 	parent.apply_movement(dir, parent.acceleration, parent.max_speed, delta)

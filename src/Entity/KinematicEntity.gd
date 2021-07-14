@@ -11,20 +11,35 @@ var states = []
 var direction = Vector3()
 var strafe = Vector3()
 var gravity_direction = Vector3.DOWN
+var collision : KinematicCollision
+var on_floor = false
+var max_climb_angle = 0.6
+var gravity = 5
 
 	
 func _physics_process(delta):
 	for state in states:
 		state.physics_process(delta)
 	
-	
-	if is_on_floor():
-		gravity_direction = -get_floor_normal()
+	if !collision:
+		on_floor = false
+		velocity.y -= gravity 
+	elif Vector3.UP.dot(collision.normal) < max_climb_angle:
+		on_floor = false
+		velocity.y -= gravity
+
+	if velocity.length() >= .5:
+		collision = move_and_collide(velocity * delta)
 	else:
-		gravity_direction = Vector3.DOWN
-	
-	velocity += gravity_direction * 5
-	velocity = move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(90))
+		velocity = Vector3(0, velocity.y, 0)
+	if collision:
+		if Vector3.UP.dot(collision.normal) < .5:
+			velocity.y += delta * gravity
+			clamp(velocity.y, gravity, 9999)
+			velocity = velocity.slide(collision.normal).normalized() * velocity.length()
+		else:
+			velocity = velocity
+		
 
 func push_state(state, old_state = null, parameters = {}):
 	if has_state(state):
