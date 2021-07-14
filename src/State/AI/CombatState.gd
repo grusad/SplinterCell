@@ -1,6 +1,6 @@
 extends State
 
-onready var navigation = get_tree().root.get_node("Test/Navigation")
+
 
 var target = null
 var vision = null
@@ -47,6 +47,6 @@ func physics_process(delta):
 
 
 func find_path():
-	path = navigation.get_simple_path(parent.global_transform.origin, target_last_seen, true)
+	path = parent.navigation.get_simple_path(parent.global_transform.origin, target_last_seen, true)
 	
 		

@@ -1,5 +1,6 @@
 extends KinematicEntity
 
+onready var navigation = get_tree().root.get_node("Test/Navigation")
 
 export (String, "IdleState", "PatrolState") var initial_state = "IdleState"
 

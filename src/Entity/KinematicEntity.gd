@@ -10,15 +10,21 @@ var friction = 10.0
 var states = []
 var direction = Vector3()
 var strafe = Vector3()
+var gravity_direction = Vector3.DOWN
 
 	
 func _physics_process(delta):
 	for state in states:
 		state.physics_process(delta)
 	
-	if not is_on_floor():
-		velocity.y -= 0.5
-	velocity = move_and_slide(velocity, Vector3.UP, false, 4, deg2rad(70))
+	
+	if is_on_floor():
+		gravity_direction = -get_floor_normal()
+	else:
+		gravity_direction = Vector3.DOWN
+	
+	velocity += gravity_direction * 5
+	velocity = move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(90))
 
 func push_state(state, old_state = null, parameters = {}):
 	if has_state(state):
