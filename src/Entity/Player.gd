@@ -7,7 +7,6 @@ onready var camera = $UpperCollider/Camera
 var MOUSE_SENSITIVITY = 0.2
 var camera_transform : Transform = Transform()
 
-
 func _ready():
 	add_to_group("Player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)	

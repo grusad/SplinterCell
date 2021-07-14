@@ -6,6 +6,8 @@ class_name KinematicEntity
 var velocity = Vector3()
 export (int) var acceleration = 10.0
 export (int) var max_speed = 3.0
+
+var light_visible = 0.0
 var friction = 10.0
 var states = []
 var direction = Vector3()
@@ -16,6 +18,8 @@ var on_floor = false
 var max_climb_angle = 0.6
 var gravity = 1
 
+func _init():
+	add_to_group("KinematicEntity")
 	
 func _physics_process(delta):
 	for state in states:
