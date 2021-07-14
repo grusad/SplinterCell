@@ -14,7 +14,7 @@ var gravity_direction = Vector3.DOWN
 var collision : KinematicCollision
 var on_floor = false
 var max_climb_angle = 0.6
-var gravity = 5
+var gravity = 1
 
 	
 func _physics_process(delta):
@@ -23,12 +23,12 @@ func _physics_process(delta):
 	
 	if !collision:
 		on_floor = false
-		velocity.y -= gravity 
+		velocity.y -= gravity
 	elif Vector3.UP.dot(collision.normal) < max_climb_angle:
-		on_floor = false
+		
 		velocity.y -= gravity
 
-	if velocity.length() >= .5:
+	if velocity.length() >= .1:
 		collision = move_and_collide(velocity * delta)
 	else:
 		velocity = Vector3(0, velocity.y, 0)
@@ -40,7 +40,7 @@ func _physics_process(delta):
 		else:
 			velocity = velocity
 		
-
+	
 func push_state(state, old_state = null, parameters = {}):
 	if has_state(state):
 		return
