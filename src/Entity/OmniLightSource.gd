@@ -18,12 +18,16 @@ func _physics_process(delta):
 		var direction_to_target = global_transform.origin.direction_to(key.global_transform.origin)
 		ray_cast.cast_to = direction_to_target * omni_range
 		ray_cast.rotation_degrees = -get_parent().rotation_degrees
-	
+		var visibility = 0
 		if ray_cast.is_colliding():
 			var object = ray_cast.get_collider()
 			if object.is_in_group("KinematicEntity"):
-				print("visible by light")
-		
+				var distance = global_transform.origin.distance_to(object.global_transform.origin)
+				visibility = clamp(1 - (distance / omni_range), 0, 1)
+				object.light_visible = visibility
+				
+		else:
+			key.light_visible = 0
 			
 	
 		

@@ -16,7 +16,7 @@ var gravity_direction = Vector3.DOWN
 var collision : KinematicCollision
 var on_floor = false
 var max_climb_angle = 0.6
-var gravity = 1
+var gravity = 0.98
 
 func _init():
 	add_to_group("KinematicEntity")

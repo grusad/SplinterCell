@@ -9,6 +9,8 @@ var camera_transform : Transform = Transform()
 
 func _ready():
 	add_to_group("Player")
+	get_node("HUD/Debug").player = self
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)	
 	var initial_state = get_state("IdleState")
 	initial_state.enter_state(self, null)
