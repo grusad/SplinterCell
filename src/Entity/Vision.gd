@@ -1,7 +1,6 @@
 extends Area
 
-
-const MAX_RAY_DISTANCE = 8
+const MAX_RAY_DISTANCE = 6
 
 onready var player = get_tree().root.get_node("/root/Test/Player")
 onready var ray_cast = get_node("RayCast")
@@ -48,8 +47,15 @@ func on_body_exited(body):
 func process_alert_time(delta):
 	if see_player():
 		var distance = global_transform.origin.distance_to(player.global_transform.origin)
-		var percentage = distance / MAX_RAY_DISTANCE
-		alert_timer += (1 - percentage) * delta
+		var light_factor = player.light_visibility
+		var distance_factor = 1 - (distance / MAX_RAY_DISTANCE)
+		
+		if light_factor <= 0:
+			if distance > 2:
+				distance_factor = 0
+		
+		var alert_factor = distance_factor + light_factor * delta	
+		alert_timer += alert_factor
 		if alert_timer >= 1.0:
 			emit_signal("player_alert", player)
 	else:
@@ -63,7 +69,6 @@ func process_alert_time(delta):
 	
 	
 func process_ray_cast():
-	
 	var direction_to_player = global_transform.origin.direction_to(player.global_transform.origin)
 	ray_cast.cast_to = direction_to_player * MAX_RAY_DISTANCE
 	ray_cast.rotation_degrees = -get_parent().rotation_degrees

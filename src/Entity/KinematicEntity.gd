@@ -7,7 +7,8 @@ var velocity = Vector3()
 export (int) var acceleration = 10.0
 export (int) var max_speed = 3.0
 
-var light_visible = 0.0
+var light_visibility = 0.0
+var nearby_light_sources = []
 var friction = 10.0
 var states = []
 var direction = Vector3()
@@ -25,6 +26,16 @@ func _physics_process(delta):
 	for state in states:
 		state.physics_process(delta)
 	
+	process_slope_movement(delta)
+	process_light_visibility()
+
+func process_light_visibility():
+	var visibility = 0
+	for source in nearby_light_sources:
+		visibility += source.get_visibility(self)
+	light_visibility = clamp(visibility, 0, 1)
+
+func process_slope_movement(delta):
 	if !collision:
 		on_floor = false
 		velocity.y -= gravity
@@ -43,7 +54,6 @@ func _physics_process(delta):
 			velocity = velocity.slide(collision.normal).normalized() * velocity.length()
 		else:
 			velocity = velocity
-		
 	
 func push_state(state, old_state = null, parameters = {}):
 	if has_state(state):
