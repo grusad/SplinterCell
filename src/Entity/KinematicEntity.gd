@@ -7,20 +7,21 @@ var velocity = Vector3()
 export (int) var acceleration = 10.0
 export (int) var max_speed = 3.0
 
-var light_visibility = 0.0
+
 var nearby_light_sources = []
+var stats : Stats = null
 var friction = 10.0
 var states = []
 var direction = Vector3()
 var strafe = Vector3()
 var gravity_direction = Vector3.DOWN
 var collision : KinematicCollision
-var on_floor = false
 var max_climb_angle = 0.6
 var gravity = 0.98
 
 func _init():
 	add_to_group("KinematicEntity")
+	stats = Stats.new()
 	
 func _physics_process(delta):
 	for state in states:
@@ -33,11 +34,10 @@ func process_light_visibility():
 	var visibility = 0
 	for source in nearby_light_sources:
 		visibility += source.get_visibility(self)
-	light_visibility = clamp(visibility, 0, 1)
+	stats.light_visibility = clamp(visibility, 0, 1)
 
 func process_slope_movement(delta):
 	if !collision:
-		on_floor = false
 		velocity.y -= gravity
 	elif Vector3.UP.dot(collision.normal) < max_climb_angle:
 		
@@ -89,5 +89,11 @@ func remove_state(state):
 	states.erase(state)
 	state.post_remove_event()
 	
-
+func damage(dmg):
+	stats.health -= dmg
+	if stats.health <= 0:
+		die()
+		
+func die():
+	queue_free()
 

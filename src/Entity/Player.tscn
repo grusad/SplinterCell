@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/State/MoveState.gd" type="Script" id=1]
 [ext_resource path="res://src/State/IdleState.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/State/AimState.gd" type="Script" id=7]
 [ext_resource path="res://src/Entity/Aim.gd" type="Script" id=8]
 [ext_resource path="res://src/Entity/Debug.gd" type="Script" id=9]
+[ext_resource path="res://assets/materials/night_vision.material" type="Material" id=10]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.2
@@ -157,3 +158,13 @@ margin_left = 59.0
 margin_right = 67.0
 margin_bottom = 14.0
 text = "1"
+
+[node name="NightVision" type="ColorRect" parent="HUD"]
+visible = false
+material = ExtResource( 10 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

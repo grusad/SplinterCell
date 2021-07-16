@@ -45,16 +45,22 @@ func fire():
 	can_fire = false
 	timer.start()
 	
-	var aim = parent.get_aim()
+	var hit_data = parent.get_aim().hit_data
 	
-	if aim.target:
-		spawn_hit_particles(parent.get_aim().target)
+	if hit_data:
+		spawn_hit_particles(hit_data)
+		
+		var hit_object = hit_data.hit_object
+		if hit_object is KinematicEntity:
+			hit_object.damage(25)
+	
+	
+	
 		
 func spawn_hit_particles(hit_data):
 	var instance = hit_particles.instance()
 	var root = get_tree().root
 	root.add_child(instance)
-	
 	
 	instance.start(hit_data)
 	

@@ -4,6 +4,8 @@ extends KinematicEntity
 onready var upper_collider = $UpperCollider
 onready var camera = $UpperCollider/Camera
 
+signal toggle_night_vision
+
 var MOUSE_SENSITIVITY = 0.2
 var camera_transform : Transform = Transform()
 
@@ -25,6 +27,13 @@ func _process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+	if Input.is_action_just_pressed("night_vision"):
+		toggle_night_vision()
+
+func toggle_night_vision():
+	var night_vision = get_node("HUD/NightVision")
+	night_vision.visible = not night_vision.visible
+	emit_signal("toggle_night_vision", night_vision.visible)
 
 func get_input_direction():
 	

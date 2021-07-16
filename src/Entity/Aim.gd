@@ -1,12 +1,12 @@
 extends RayCast
 
-var target : HitData = null
+var hit_data : HitData = null
 
 func _physics_process(delta):
 	if is_colliding():
-		target = HitData.new(get_collider(), get_collision_point(), get_collision_normal())
+		hit_data = HitData.new(get_collider(), get_collision_point(), get_collision_normal())
 	else:
-		target = null
+		hit_data = null
 
 		
 class HitData:

@@ -47,7 +47,7 @@ func on_body_exited(body):
 func process_alert_time(delta):
 	if see_player():
 		var distance = global_transform.origin.distance_to(player.global_transform.origin)
-		var light_factor = player.light_visibility
+		var light_factor = player.stats.light_visibility
 		var distance_factor = 1 - (distance / MAX_RAY_DISTANCE)
 		
 		if light_factor <= 0:
