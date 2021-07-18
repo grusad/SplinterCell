@@ -1,15 +1,18 @@
 extends OmniLight
 
+export (LightFlicker.FlickerType) var flicker_type
+
 var entities = []
 var ray_map = {}
 
 func _ready():
 	var area = get_node("Area")
 	var collision_shape =  get_node("Area/CollisionShape")
-	
 	collision_shape.shape.radius = omni_range
 	area.connect("body_entered", self, "on_body_entered")
 	area.connect("body_exited", self, "on_body_exited")
+	
+	Globals.connect("light_factor", self, "on_light_factor_changed")
 	
 
 func get_visibility(entity):
@@ -49,3 +52,7 @@ func on_body_exited(body):
 	ray_map.erase(body)
 	ray.queue_free()
 	body.nearby_light_sources.erase(self)
+	
+	
+func on_light_factor_changed(amount):
+	light_energy = amount

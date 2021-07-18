@@ -85,7 +85,7 @@ tracks/0/keys = {
 
 [node name="DummyEnemy" type="KinematicBody"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 7
 script = ExtResource( 1 )
 acceleration = 6
 max_speed = 1
@@ -93,8 +93,8 @@ max_speed = 1
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 8, 0, 1.39876e-06, 0, 8, 0, -1.39876e-06, 0, 8, 0, 0.631401, 0 )
 texture = ExtResource( 2 )
-hframes = 2
 vframes = 3
+hframes = 2
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 48 )
 __meta__ = {

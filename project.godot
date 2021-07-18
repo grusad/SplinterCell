@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Entity/KinematicEntity.gd"
 }, {
+"base": "Node",
+"class": "LightFlicker",
+"language": "GDScript",
+"path": "res://src/Entity/LightFlicker.gd"
+}, {
 "base": "TextureRect",
 "class": "PlayerWeaponTexture",
 "language": "GDScript",
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "KinematicEntity": "",
+"LightFlicker": "",
 "PlayerWeaponTexture": "",
 "State": "",
 "Stats": ""
@@ -41,6 +47,10 @@ _global_script_class_icons={
 config/name="Splinter Cell"
 run/main_scene="res://src/Test.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://src/Resource/Globals.tscn"
 
 [display]
 
@@ -130,5 +140,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
 quality/filters/use_fxaa=true
+environment/default_environment="res://default_env.tres"

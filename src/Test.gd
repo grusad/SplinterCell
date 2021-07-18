@@ -4,12 +4,12 @@ onready var player = get_node("Player")
 onready var world_env = get_node("WorldEnvironment")
 
 func _ready():
-	player.connect("toggle_night_vision", self, "on_night_vision_toggled")
+	Globals.connect("light_factor", self, "on_light_factor_changed")
 	
 
-func on_night_vision_toggled(on):
-	if on:
-		world_env.environment.ambient_light_energy = 100
+func on_light_factor_changed(amount):
+	if amount == 1:
+		world_env.environment.ambient_light_energy = amount
 	else:
-		world_env.environment.ambient_light_energy = 1
+		world_env.environment.ambient_light_energy = amount * 10
 	

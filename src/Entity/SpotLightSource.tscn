@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Entity/SpotLightSource.gd" type="Script" id=1]
+[ext_resource path="res://src/Entity/LightFlicker.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 4.0
@@ -17,3 +18,5 @@ collision_mask = 2147483654
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.74228e-08, -2 )
 shape = SubResource( 1 )
+
+[node name="LightFlicker" parent="." instance=ExtResource( 2 )]

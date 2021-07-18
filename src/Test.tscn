@@ -94,10 +94,11 @@ environment = SubResource( 4 )
 
 [node name="OmniLightSource" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
+flicker_type = 2
 
 [node name="OmniLightSource2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5 )
+visible = false
 
 [node name="SpotLightSource" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 13, 2, 3 )
-light_energy = 16.0

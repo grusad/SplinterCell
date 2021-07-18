@@ -33,7 +33,10 @@ func _process(delta):
 func toggle_night_vision():
 	var night_vision = get_node("HUD/NightVision")
 	night_vision.visible = not night_vision.visible
-	emit_signal("toggle_night_vision", night_vision.visible)
+	var light_factor = 1
+	if night_vision.visible:
+		light_factor = 100
+	Globals.emit_signal("light_factor", light_factor)
 
 func get_input_direction():
 	

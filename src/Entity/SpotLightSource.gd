@@ -1,11 +1,16 @@
 extends SpotLight
 
+
+export (LightFlicker.FlickerType) var flicker_type
+
 var entities = []
 
 func _ready():
+	randomize()
 	var area = get_node("Area")
 	area.connect("body_entered", self, "on_body_eneterd")
 	area.connect("body_exited", self, "on_body_exited")
+	Globals.connect("light_factor", self, "on_light_factor_changed")
 	
 
 func _physics_process(delta):
@@ -38,3 +43,6 @@ func on_body_eneterd(body):
 	
 func on_body_exited(body):
 	entities.erase(body)
+
+func on_light_factor_changed(amount):
+	light_energy = amount
