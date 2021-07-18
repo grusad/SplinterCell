@@ -22,7 +22,7 @@ func get_visibility(entity):
 	ray_cast.cast_to = direction_to_target * omni_range
 	ray_cast.rotation_degrees = -get_parent().rotation_degrees
 	var visibility = 0
-	if ray_cast.is_colliding():
+	if ray_cast.is_colliding() and visible:
 		var object = ray_cast.get_collider()
 		if object == entity:
 			var distance = global_transform.origin.distance_to(object.global_transform.origin)

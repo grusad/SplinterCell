@@ -30,9 +30,9 @@ func rand_wait_time():
 		FlickerType.SLOW:
 			return rand_range(2, 6)
 		FlickerType.FAST:
-			return rand_range(0.01, 0.05)
+			return rand_range(0.05, 0.3)
 
 func on_timer_timeout():
 	light_source.visible = not light_source.visible
 	timer.wait_time = rand_wait_time()
-	timer.start()
+	

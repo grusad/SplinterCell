@@ -94,7 +94,7 @@ environment = SubResource( 4 )
 
 [node name="OmniLightSource" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
-flicker_type = 2
+flicker_type = 1
 
 [node name="OmniLightSource2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5 )
