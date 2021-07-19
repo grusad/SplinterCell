@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Entity/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/enemy_sheet.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://src/State/AI/SearchState.gd" type="Script" id=8]
 [ext_resource path="res://src/State/AI/PatrolState.gd" type="Script" id=9]
+[ext_resource path="res://src/Audio/AudioManager.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.3
@@ -93,8 +94,8 @@ max_speed = 1
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 8, 0, 1.39876e-06, 0, 8, 0, -1.39876e-06, 0, 8, 0, 0.631401, 0 )
 texture = ExtResource( 2 )
-vframes = 3
 hframes = 2
+vframes = 3
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 48 )
 __meta__ = {
@@ -137,7 +138,7 @@ cast_to = Vector3( 0, 0, 15 )
 collision_mask = 7
 
 [node name="AlertSprite" type="Sprite3D" parent="Vision"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70581, 0 )
 cast_shadow = 0
 modulate = Color( 1, 0, 0, 1 )
 billboard = 1
@@ -150,3 +151,5 @@ anims/aim_animation = SubResource( 3 )
 anims/aim_walk_animation = SubResource( 4 )
 anims/idle_animation = SubResource( 5 )
 anims/walk_animation = SubResource( 6 )
+
+[node name="AudioManager" parent="." instance=ExtResource( 10 )]

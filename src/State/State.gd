@@ -5,11 +5,13 @@ var parent : KinematicEntity = null
 var previous_state = null
 var parameters = {}
 var children = []
+var audio_manager = null
 
 func enter_state(parent, previous_state, parameters = {}):
 	self.parent = parent
 	self.previous_state = previous_state
 	self.parameters = parameters
+	self.audio_manager = parent.get_audio_manager()
 	
 func exit_state():
 	for child in children:

@@ -1,13 +1,13 @@
 extends State
 
-
+var audio_foorstep_timer = 0
 
 func enter_state(parent, previous_state = null, parameters = {}):
 	.enter_state(parent, previous_state, parameters)
-	
+	audio_manager.play("Footstep")
 	
 func exit_state():
-	pass
+	audio_foorstep_timer = 0
 
 func process_unhandled_input(event):
 	pass
@@ -33,4 +33,9 @@ func physics_process(delta):
 	dir += strafe * movement_direction.x
 	
 	parent.apply_movement(dir, parent.acceleration, parent.max_speed, delta)
+	
+	audio_foorstep_timer += delta
+	if audio_foorstep_timer > (1 / parent.velocity.length() * 1.5):
+		audio_manager.play_rand_pitch("Footstep")
+		audio_foorstep_timer = 0
 	

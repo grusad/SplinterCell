@@ -2,7 +2,6 @@ extends KinematicBody
 class_name KinematicEntity
 
 
-
 var velocity = Vector3()
 export (int) var acceleration = 10.0
 export (int) var max_speed = 3.0
@@ -29,6 +28,7 @@ func _physics_process(delta):
 	
 	process_slope_movement(delta)
 	process_light_visibility()
+	
 
 func process_light_visibility():
 	var visibility = 0
@@ -97,3 +97,5 @@ func damage(dmg):
 func die():
 	queue_free()
 
+func get_audio_manager():
+	return get_node_or_null("AudioManager")
