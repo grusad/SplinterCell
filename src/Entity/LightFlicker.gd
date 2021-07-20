@@ -20,7 +20,6 @@ func _ready():
 	timer.wait_time = rand_wait_time()
 	timer.connect("timeout", self, "on_timer_timeout")
 	timer.start()
-	print(light_source.flicker_type)
 
 func rand_wait_time():
 	

@@ -13,10 +13,11 @@ func _ready():
 	add_to_group("Enemy")
 	push_state(get_state(initial_state), null)
 	
-	boid = Boid.new(self)
-	add_child(boid)
+	#boid = Boid.new(self)
+	#add_child(boid)
 	
 	max_speed = 1
+	
 	
 
 func _physics_process(delta):
@@ -38,7 +39,9 @@ func play_animation(animation):
 		
 	if animation != "aim_animation" and has_state("AimState"):
 		return
-	
+	if not visible:
+		return
+
 	animation_player.play(animation)
 
 func rotate_towards(target):
@@ -60,8 +63,8 @@ func move(path, delta, look_at = null, break_move = false):
 		rotate_towards(look_at)
 
 		var direction = (path[0] - global_transform.origin).normalized()
-		if boid.is_obsticle_ahead():			
-			direction += boid.process_seperation(velocity)
+		#if boid.is_obsticle_ahead():			
+			#direction += boid.process_seperation(velocity)
 		apply_movement(direction, acceleration, max_speed, delta)
 	else:
 		apply_friction(5, delta)

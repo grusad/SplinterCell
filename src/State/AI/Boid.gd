@@ -35,8 +35,6 @@ func _init(parent):
 		ray.translation = Vector3(0, 0.5, 0)
 		ray.collision_mask = 4
 		
-		parent.add_child(ray)
-		
 		
 		Vector2(0, -1).rotated(angle)
 		ray.rotate_y(angle)

@@ -43,7 +43,7 @@ ambient_light_energy = 16.0
 script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.2, -2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.2, -2 )
 
 [node name="Navigation" type="Navigation" parent="."]
 
@@ -103,6 +103,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7 )
 
 [node name="DummyEnemy" parent="Navigation" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.35013, 0.1, -1.34957 )
+visible = false
 acceleration = 10
 max_speed = 3
 initial_state = "PatrolState"
@@ -112,15 +113,18 @@ curve = SubResource( 2 )
 
 [node name="DummyEnemy2" parent="Navigation" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 2 )
+visible = false
 
 [node name="DummyEnemy3" parent="Navigation" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0 )
 
 [node name="DummyEnemy4" parent="Navigation" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 2 )
+visible = false
 
 [node name="DummyEnemy5" parent="Navigation" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 3 )
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )

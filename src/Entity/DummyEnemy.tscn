@@ -18,11 +18,11 @@ height = 0.6
 [sub_resource type="SphereShape" id=2]
 radius = 5.0
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 resource_name = "aim_animation"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../DummyEnemy/Sprite3D:frame")
+tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -39,7 +39,7 @@ resource_name = "aim_walk_animation"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../DummyEnemy/Sprite3D:frame")
+tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -48,14 +48,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 3, 5 ]
+"values": [ 5, 3 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 resource_name = "idle_animation"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../DummyEnemy/Sprite3D:frame")
+tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -67,12 +67,12 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 resource_name = "walk_animation"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../DummyEnemy/Sprite3D:frame")
+tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -96,6 +96,7 @@ transform = Transform( 8, 0, 1.39876e-06, 0, 8, 0, -1.39876e-06, 0, 8, 0, 0.6314
 texture = ExtResource( 2 )
 hframes = 2
 vframes = 3
+frame = 2
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 48 )
 __meta__ = {
@@ -147,9 +148,9 @@ texture = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle_animation"
-anims/aim_animation = SubResource( 3 )
+anims/aim_animation = SubResource( 5 )
 anims/aim_walk_animation = SubResource( 4 )
-anims/idle_animation = SubResource( 5 )
-anims/walk_animation = SubResource( 6 )
+anims/idle_animation = SubResource( 6 )
+anims/walk_animation = SubResource( 7 )
 
 [node name="AudioManager" parent="." instance=ExtResource( 10 )]
