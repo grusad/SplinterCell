@@ -7,11 +7,17 @@ export (String, "IdleState", "PatrolState") var initial_state = "IdleState"
 onready var sprite = $Sprite3D
 onready var vision = $Vision
 
+var boid : Boid = null
 
 func _ready():
 	add_to_group("Enemy")
 	push_state(get_state(initial_state), null)
+	
+	boid = Boid.new(self)
+	add_child(boid)
+	
 	max_speed = 1
+	
 
 func _physics_process(delta):
 	._physics_process(delta)
@@ -54,7 +60,8 @@ func move(path, delta, look_at = null, break_move = false):
 		rotate_towards(look_at)
 
 		var direction = (path[0] - global_transform.origin).normalized()
-		
+		if boid.is_obsticle_ahead():			
+			direction += boid.process_seperation(velocity)
 		apply_movement(direction, acceleration, max_speed, delta)
 	else:
 		apply_friction(5, delta)

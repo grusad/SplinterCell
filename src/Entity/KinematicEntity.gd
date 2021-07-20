@@ -15,7 +15,7 @@ var direction = Vector3()
 var strafe = Vector3()
 var gravity_direction = Vector3.DOWN
 var collision : KinematicCollision
-var max_climb_angle = 0.6
+var max_climb_angle = 0.1
 var gravity = 0.98
 
 func _init():
@@ -37,6 +37,7 @@ func process_light_visibility():
 	stats.light_visibility = clamp(visibility, 0, 1)
 
 func process_slope_movement(delta):
+	
 	if !collision:
 		velocity.y -= gravity
 	elif Vector3.UP.dot(collision.normal) < max_climb_angle:
