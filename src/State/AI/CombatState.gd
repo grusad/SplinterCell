@@ -35,7 +35,6 @@ func physics_process(delta):
 		target_last_seen = target.global_transform.origin
 		
 	if vision.can_fire():
-		
 		parent.play_animation("aim_animation")
 		parent.apply_friction(5, delta)
 		parent.rotate_towards(target_last_seen)

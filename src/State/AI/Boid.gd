@@ -24,24 +24,27 @@ func _init(parent):
 		ray.collision_mask = 4
 		detectors.push_back(ray)
 		
-	var angle = PI
+	var angle = 0
 	var angle_interval = 2 * PI / 8
-
-	for i in 8:
-		var ray = RayCast.new()
-		ray.enabled = true
-		parent.add_child(ray)
-		ray.cast_to = Vector3.BACK * 2
-		ray.translation = Vector3(0, 0.5, 0)
-		ray.collision_mask = 4
 		
-		
-		Vector2(0, -1).rotated(angle)
-		ray.rotate_y(angle)
-		angle += angle_interval
-		
-		sensors.push_back(ray)
-		
+	
+	sensors.push_back(generate_ray_cast())
+	sensors.push_back(generate_ray_cast().rotate_y(deg2rad(20)))
+	sensors.push_back(generate_ray_cast().rotate_y(deg2rad(-20)))
+	sensors.push_back(generate_ray_cast().rotate_y(deg2rad(40)))
+	sensors.push_back(generate_ray_cast().rotate_y(deg2rad(-40)))
+	sensors.push_back(generate_ray_cast().rotate_y(deg2rad(60)))
+	sensors.push_back(generate_ray_cast().rotate_y(deg2rad(-60)))
+	
+	
+func generate_ray_cast():
+	var ray = RayCast.new()
+	ray.enabled = true
+	parent.add_child(ray)
+	ray.cast_to = Vector3.BACK * 2
+	ray.translation = Vector3(0, 0.5, 0)
+	ray.collision_mask = 4
+	return ray
 
 func _process(delta):
 	

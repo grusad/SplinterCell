@@ -136,7 +136,7 @@ shape = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, 15 )
-collision_mask = 7
+collision_mask = 3
 
 [node name="AlertSprite" type="Sprite3D" parent="Vision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70581, 0 )
